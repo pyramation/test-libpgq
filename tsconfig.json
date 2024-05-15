@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+      "baseUrl": ".",
+      "rootDir": ".",
+      "skipLibCheck": true,
+      "declaration": true,
+      "emitDeclarationOnly": false,
+      "isolatedModules": true,
+      "allowJs": true,  
+      "esModuleInterop": true,
+      "target": "es2022",
+      "lib": ["es2022", "DOM"],
+      "downlevelIteration": true,
+      "moduleResolution": "node",
+      "resolveJsonModule": true
+    },
+    "exclude": ["node_modules"]
+  }
+  

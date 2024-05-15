@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "vitest"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "libpg-query": "^16.2.0",
-    "vitest": "^1.6.0"
+    "ts-jest": "^29.1.2",
+    "jest": "^29.7.0"
   }
 }
