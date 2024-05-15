@@ -1,0 +1,45 @@
+name: CI
+
+# Controls when the workflow will run
+on:
+  push:
+    branches: [master, main, /^\d+\.\d+\.\d+$/]
+  pull_request:
+    branches: [master, main, /^\d+\.\d+\.\d+$/]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+concurrency:
+  group: build-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-version: ["18", "20"]
+        postgres-version: ["14", "15", "16"]
+      fail-fast: false
+    services:
+      postgres:
+        image: postgres:${{ matrix.postgres-version }}
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+      - run: pnpm install
+      - run: pnpm install libpg-query@${{ matrix.postgres-version }}
+      - run: pnpm test

@@ -1,0 +1,17 @@
+{
+  "name": "test-libpg-query-seg-fault",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "packageManager": "pnpm@8.15.8",
+  "scripts": {
+    "test": "vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "libpg-query": "^16.2.0",
+    "vitest": "^1.6.0"
+  }
+}
