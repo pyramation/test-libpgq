@@ -35,11 +35,10 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v3
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: "pnpm"
-      - run: pnpm install
-      - run: pnpm install libpg-query@${{ matrix.postgres-version }}
-      - run: pnpm test
+          cache: "yarn"
+      - run: yarn install
+      - run: yarn install libpg-query@${{ matrix.postgres-version }}
+      - run: yarn test
