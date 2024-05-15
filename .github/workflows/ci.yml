@@ -21,6 +21,7 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         node-version: ["18", "20"]
+        postgres-version: ["14", "15", "16"]
       fail-fast: false
     steps:
       - uses: actions/checkout@v4
