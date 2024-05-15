@@ -29,5 +29,5 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "yarn"
       - run: yarn install
-      - run: yarn install libpg-query@${{ matrix.postgres-version }}
+      - run: yarn add libpg-query@${{ matrix.postgres-version }}
       - run: yarn test
